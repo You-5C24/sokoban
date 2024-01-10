@@ -1,9 +1,7 @@
 <template>
-  <div class="bg-pink-500">sokoban{{ map }}</div>
+  <Game />
 </template>
 
 <script setup lang="ts">
-import { useMapStore } from "./store/map.ts";
-
-const { map } = useMapStore();
+import Game from "./components/Games/Game.vue";
 </script>

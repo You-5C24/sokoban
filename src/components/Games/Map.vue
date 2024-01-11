@@ -3,10 +3,10 @@
     <div v-for="(_, i) in map" class="flex">
       <div v-for="(_, j) in map[i]">
         <template v-if="map[i][j] === MapTile.WALL">
-          <img :src="Floor" />
+          <img :src="Wall" />
         </template>
         <template v-else-if="map[i][j] === MapTile.FLOOR">
-          <img :src="Wall" />
+          <img :src="Floor" />
         </template>
       </div>
     </div>

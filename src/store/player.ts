@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import { reactive } from "vue";
+import { useMapStore } from "./map";
 
 export const usePlayerStore = defineStore("player", () => {
   const player = reactive({
@@ -7,21 +8,37 @@ export const usePlayerStore = defineStore("player", () => {
     y: 3,
   });
 
-  const movePlayerToLeft = () => {
+  function movePlayerToLeft() {
+    const { isWall } = useMapStore();
+
+    if (isWall({ x: player.x - 1, y: player.y })) return;
+
     player.x -= 1;
-  };
+  }
 
-  const movePlayerToRight = () => {
+  function movePlayerToRight() {
+    const { isWall } = useMapStore();
+
+    if (isWall({ x: player.x + 1, y: player.y })) return;
+
     player.x += 1;
-  };
+  }
 
-  const movePlayerToDown = () => {
+  function movePlayerToDown() {
+    const { isWall } = useMapStore();
+
+    if (isWall({ x: player.x, y: player.y + 1 })) return;
+
     player.y += 1;
-  };
+  }
 
-  const movePlayerToUp = () => {
+  function movePlayerToUp() {
+    const { isWall } = useMapStore();
+
+    if (isWall({ x: player.x, y: player.y - 1 })) return;
+
     player.y -= 1;
-  };
+  }
 
   return {
     player,

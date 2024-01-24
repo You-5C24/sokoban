@@ -1,23 +1,25 @@
 <template>
   <div class="absolute" :style="position">
-    <img :src="Keeper" />
+    <img :src="CargoImg" />
   </div>
 </template>
 
 <script setup lang="ts">
-import Keeper from "../../assets/keeper.png";
+import CargoImg from "../../assets/cargo.png";
 import { usePosition } from "../../composables/usePostion";
-import { usePlayerStore } from "../../store/player";
-import { useMove } from "./player";
 
 defineOptions({
-  name: "Player",
+  name: "Cargo",
 });
 
-const { player } = usePlayerStore();
+interface Props {
+  x: number;
+  y: number;
+}
 
-useMove();
-const { position } = usePosition(player);
+const props = defineProps<Props>();
+
+const { position } = usePosition(props);
 </script>
 
 <style lang="scss" scoped>

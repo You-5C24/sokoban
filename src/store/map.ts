@@ -1,13 +1,9 @@
 import { defineStore } from "pinia";
+import { Position } from "../composables/usePostion";
 
 export enum MapTile {
   WALL = 1,
   FLOOR = 2,
-}
-
-interface Position {
-  x: number;
-  y: number;
 }
 
 export const useMapStore = defineStore("map", () => {

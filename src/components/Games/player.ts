@@ -1,4 +1,4 @@
-import { computed, onMounted, onUnmounted } from "vue";
+import { onMounted, onUnmounted } from "vue";
 import { usePlayerStore } from "../../store/player";
 
 export function useMove() {
@@ -33,19 +33,4 @@ export function useMove() {
   onUnmounted(() => {
     window.removeEventListener("keyup", handleMove);
   });
-}
-
-export function usePosition() {
-  const STEP = 50;
-  const { player } = usePlayerStore();
-  const position = computed(() => {
-    return {
-      left: `${STEP * player.x}px`,
-      top: `${STEP * player.y}px`,
-    };
-  });
-
-  return {
-    position,
-  };
 }

@@ -18,7 +18,9 @@ defineOptions({
   name: "Game",
 });
 
-const { cargos } = useCargoStore();
+const { cargos, createCargo, addCargo } = useCargoStore();
+
+addCargo(createCargo({ x: 3, y: 3 }));
 </script>
 
 <style lang="scss" scoped></style>

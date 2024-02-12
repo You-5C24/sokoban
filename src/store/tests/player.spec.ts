@@ -186,5 +186,33 @@ describe("player", () => {
       expect(player.y).toBe(2);
       expect(cargo.y).toBe(1);
     });
+
+    it("can not move cargo when hit the wall", () => {
+      const { createCargo, addCargo } = useCargoStore();
+      const cargo = createCargo({ x: 1, y: 1 });
+      addCargo(cargo);
+
+      const { player, movePlayerToLeft } = usePlayerStore();
+      player.x = 2;
+      player.y = 1;
+
+      movePlayerToLeft();
+
+      expect(player.x).toBe(2);
+    });
+
+    it("can not move cargo when hit the other wall", () => {
+      const { createCargo, addCargo } = useCargoStore();
+      addCargo(createCargo({ x: 1, y: 1 }));
+      addCargo(createCargo({ x: 2, y: 1 }));
+
+      const { player, movePlayerToLeft } = usePlayerStore();
+      player.x = 3;
+      player.y = 1;
+
+      movePlayerToLeft();
+
+      expect(player.x).toBe(3);
+    });
   });
 });

@@ -14,15 +14,14 @@ export const usePlayerStore = defineStore("player", () => {
 
     if (isWall({ x: player.x + dx, y: player.y + dy })) return;
 
-    const { cargos } = useCargoStore();
+    const { moveCargo, findCargo } = useCargoStore();
 
-    const cargo = cargos.find(
-      (c) => c.x === player.x + dx && c.y === player.y + dy
-    );
+    const cargo = findCargo({ x: player.x + dx, y: player.y + dy });
 
     if (cargo) {
-      cargo.x += dx;
-      cargo.y += dy;
+      const isMoveCargo = moveCargo(cargo, dx, dy);
+
+      if (!isMoveCargo) return;
     }
 
     player.x += dx;

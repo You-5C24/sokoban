@@ -22,22 +22,17 @@ import Target from "./Target.vue";
 import { useCargoStore } from "../../store/cargo";
 import { useTargetStore } from "../../store/target";
 import { useGameStore } from "../../store/game";
+import { levelGameData } from "../../game/gameData";
 
 defineOptions({
   name: "Game",
 });
 
-const { game } = useGameStore();
+const { game, setupGame } = useGameStore();
+const { targets } = useTargetStore();
+const { cargos } = useCargoStore();
 
-const { cargos, createCargo, addCargo } = useCargoStore();
-
-addCargo(createCargo({ x: 3, y: 3, onTarget: false }));
-addCargo(createCargo({ x: 4, y: 4, onTarget: false }));
-
-const { targets, createTarget, addTarget } = useTargetStore();
-
-addTarget(createTarget({ x: 1, y: 1 }));
-addTarget(createTarget({ x: 5, y: 4 }));
+setupGame(levelGameData);
 </script>
 
 <style lang="scss" scoped></style>

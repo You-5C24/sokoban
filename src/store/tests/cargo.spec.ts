@@ -2,10 +2,22 @@ import { it, expect, describe, beforeEach } from "vitest";
 import { useCargoStore } from "../cargo";
 import { createPinia, setActivePinia } from "pinia";
 import { useTargetStore } from "../target";
+import { useMapStore } from "../map";
 
 describe("cargo", () => {
   beforeEach(() => {
     setActivePinia(createPinia());
+
+    const { setupMap } = useMapStore();
+    setupMap([
+      [1, 1, 1, 1, 1, 1, 1],
+      [1, 2, 2, 2, 2, 2, 1],
+      [1, 2, 2, 2, 2, 2, 1],
+      [1, 2, 2, 2, 2, 2, 1],
+      [1, 2, 2, 2, 2, 2, 1],
+      [1, 2, 2, 2, 2, 2, 1],
+      [1, 1, 1, 1, 2, 2, 1],
+    ]);
   });
 
   it("add new cargo", () => {

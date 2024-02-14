@@ -5,8 +5,8 @@ import { useCargoStore } from "./cargo";
 
 export const usePlayerStore = defineStore("player", () => {
   const player = reactive({
-    x: 2,
-    y: 3,
+    x: 0,
+    y: 0,
   });
 
   function _move(dx: number, dy: number) {

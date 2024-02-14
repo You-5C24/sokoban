@@ -8,6 +8,9 @@
     <template v-for="cargo in cargos">
       <Cargo :cargo="cargo" />
     </template>
+    <div v-if="game.isCompleted">
+      <Button>next</Button>
+    </div>
   </div>
 </template>
 
@@ -18,10 +21,13 @@ import Cargo from "./Cargo.vue";
 import Target from "./Target.vue";
 import { useCargoStore } from "../../store/cargo";
 import { useTargetStore } from "../../store/target";
+import { useGameStore } from "../../store/game";
 
 defineOptions({
   name: "Game",
 });
+
+const { game } = useGameStore();
 
 const { cargos, createCargo, addCargo } = useCargoStore();
 

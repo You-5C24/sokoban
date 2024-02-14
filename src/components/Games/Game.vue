@@ -6,7 +6,7 @@
     <Map />
     <Player />
     <template v-for="cargo in cargos">
-      <Cargo :x="cargo.x" :y="cargo.y" />
+      <Cargo :cargo="cargo" />
     </template>
   </div>
 </template>
@@ -25,10 +25,13 @@ defineOptions({
 
 const { cargos, createCargo, addCargo } = useCargoStore();
 
-addCargo(createCargo({ x: 3, y: 3 }));
-addCargo(createCargo({ x: 4, y: 4 }));
+addCargo(createCargo({ x: 3, y: 3, onTarget: false }));
+addCargo(createCargo({ x: 4, y: 4, onTarget: false }));
 
-const { targets } = useTargetStore();
+const { targets, createTarget, addTarget } = useTargetStore();
+
+addTarget(createTarget({ x: 1, y: 1 }));
+addTarget(createTarget({ x: 5, y: 4 }));
 </script>
 
 <style lang="scss" scoped></style>

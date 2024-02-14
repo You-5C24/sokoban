@@ -129,7 +129,7 @@ describe("player", () => {
 
     it("move cargo to left", () => {
       const { createCargo, addCargo } = useCargoStore();
-      const cargo = createCargo({ x: 2, y: 1 });
+      const cargo = createCargo({ x: 2, y: 1, onTarget: false });
       addCargo(cargo);
 
       const { player, movePlayerToLeft } = usePlayerStore();
@@ -144,7 +144,7 @@ describe("player", () => {
 
     it("move cargo to right", () => {
       const { createCargo, addCargo } = useCargoStore();
-      const cargo = createCargo({ x: 4, y: 1 });
+      const cargo = createCargo({ x: 4, y: 1, onTarget: false });
       addCargo(cargo);
 
       const { player, movePlayerToRight } = usePlayerStore();
@@ -159,7 +159,7 @@ describe("player", () => {
 
     it("move cargo to down", () => {
       const { createCargo, addCargo } = useCargoStore();
-      const cargo = createCargo({ x: 3, y: 2 });
+      const cargo = createCargo({ x: 3, y: 2, onTarget: false });
       addCargo(cargo);
 
       const { player, movePlayerToDown } = usePlayerStore();
@@ -174,7 +174,7 @@ describe("player", () => {
 
     it("move cargo to up", () => {
       const { createCargo, addCargo } = useCargoStore();
-      const cargo = createCargo({ x: 3, y: 2 });
+      const cargo = createCargo({ x: 3, y: 2, onTarget: false });
       addCargo(cargo);
 
       const { player, movePlayerToUp } = usePlayerStore();
@@ -189,7 +189,7 @@ describe("player", () => {
 
     it("can not move cargo when hit the wall", () => {
       const { createCargo, addCargo } = useCargoStore();
-      const cargo = createCargo({ x: 1, y: 1 });
+      const cargo = createCargo({ x: 1, y: 1, onTarget: false });
       addCargo(cargo);
 
       const { player, movePlayerToLeft } = usePlayerStore();
@@ -203,8 +203,8 @@ describe("player", () => {
 
     it("can not move cargo when hit the other wall", () => {
       const { createCargo, addCargo } = useCargoStore();
-      addCargo(createCargo({ x: 1, y: 1 }));
-      addCargo(createCargo({ x: 2, y: 1 }));
+      addCargo(createCargo({ x: 1, y: 1, onTarget: false }));
+      addCargo(createCargo({ x: 2, y: 1, onTarget: false }));
 
       const { player, movePlayerToLeft } = usePlayerStore();
       player.x = 3;

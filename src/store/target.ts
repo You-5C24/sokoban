@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import { reactive } from "vue";
+import { Position } from "../composables/usePostion";
 
 interface Target {
   x: number;
@@ -7,12 +8,27 @@ interface Target {
 }
 
 export const useTargetStore = defineStore("target", () => {
-  const targets: Target[] = reactive([
-    { x: 2, y: 1 },
-    { x: 4, y: 6 },
-  ]);
+  const targets = reactive<Target[]>([]);
+
+  function createTarget({ x, y }: Target): Target {
+    return {
+      x,
+      y,
+    };
+  }
+
+  function addTarget(target: Target) {
+    targets.push(target);
+  }
+
+  function findTarget(position: Position) {
+    return targets.find((c) => c.x === position.x && c.y === position.y);
+  }
 
   return {
     targets,
+    createTarget,
+    addTarget,
+    findTarget,
   };
 });

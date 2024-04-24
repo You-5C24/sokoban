@@ -4,7 +4,9 @@ import { useMapStore } from "./map";
 import { Position } from "../composables/usePostion";
 import { useTargetStore } from "./target";
 
+let Id = 1;
 export interface Cargo {
+  id?: number;
   x: number;
   y: number;
   onTarget: boolean;
@@ -15,6 +17,7 @@ export const useCargoStore = defineStore("cargo", () => {
 
   function createCargo({ x, y, onTarget }: Cargo): Cargo {
     return {
+      id: Id++,
       x,
       y,
       onTarget,
@@ -49,7 +52,12 @@ export const useCargoStore = defineStore("cargo", () => {
     cargo.onTarget = !!findTarget(cargo);
   }
 
+  function cleanAllCargos() {
+    cargos.splice(0, cargos.length);
+  }
+
   return {
+    cleanAllCargos,
     cargos,
     createCargo,
     addCargo,

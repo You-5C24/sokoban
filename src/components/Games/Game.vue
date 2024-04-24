@@ -5,11 +5,11 @@
     </template>
     <Map />
     <Player />
-    <template v-for="cargo in cargos">
+    <template v-for="cargo in cargos" :key="cargo.id">
       <Cargo :cargo="cargo" />
     </template>
     <div v-if="game.isCompleted">
-      <Button>next</Button>
+      <Button @click="handleToNextLevel">next</Button>
     </div>
   </div>
 </template>
@@ -22,17 +22,21 @@ import Target from "./Target.vue";
 import { useCargoStore } from "../../store/cargo";
 import { useTargetStore } from "../../store/target";
 import { useGameStore } from "../../store/game";
-import { levelGameData } from "../../game/gameData";
+import { gameData } from "../../game/gameData";
 
 defineOptions({
   name: "Game",
 });
 
-const { game, setupGame } = useGameStore();
+const { game, setupGame, toNextLevel } = useGameStore();
 const { targets } = useTargetStore();
 const { cargos } = useCargoStore();
 
-setupGame(levelGameData);
+setupGame(gameData);
+
+function handleToNextLevel() {
+  toNextLevel();
+}
 </script>
 
 <style lang="scss" scoped></style>

@@ -23,15 +23,15 @@ describe("cargo", () => {
   it("add new cargo", () => {
     const { cargos, createCargo, addCargo } = useCargoStore();
 
-    addCargo(createCargo({ x: 1, y: 1, onTarget: false }));
+    addCargo(createCargo({ id: 1, x: 1, y: 1, onTarget: false }));
 
-    expect(cargos).toEqual([{ x: 1, y: 1, onTarget: false }]);
+    expect(cargos).toEqual([{ id: 1, x: 1, y: 1, onTarget: false }]);
   });
 
   describe("on target", () => {
     it("shift in", () => {
       const { createCargo, addCargo, moveCargo } = useCargoStore();
-      const cargo = createCargo({ x: 2, y: 1, onTarget: false });
+      const cargo = createCargo({ id: 1, x: 2, y: 1, onTarget: false });
       addCargo(cargo);
 
       const { createTarget, addTarget } = useTargetStore();
@@ -44,7 +44,7 @@ describe("cargo", () => {
 
     it("shift out", () => {
       const { createCargo, addCargo, moveCargo } = useCargoStore();
-      const cargo = createCargo({ x: 3, y: 1, onTarget: false });
+      const cargo = createCargo({ id: 1, x: 3, y: 1, onTarget: false });
       addCargo(cargo);
 
       const { createTarget, addTarget } = useTargetStore();
@@ -54,6 +54,16 @@ describe("cargo", () => {
       moveCargo(cargo, -1, 0);
 
       expect(cargo.onTarget).toBe(false);
+    });
+
+    it("should clean all cargos", () => {
+      const { createCargo, addCargo, cleanAllCargos, cargos } = useCargoStore();
+      addCargo(createCargo({ id: 1, x: 2, y: 1, onTarget: false }));
+      addCargo(createCargo({ id: 2, x: 3, y: 1, onTarget: false }));
+
+      cleanAllCargos();
+
+      expect(cargos.length).toBe(0);
     });
   });
 });

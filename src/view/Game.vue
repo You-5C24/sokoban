@@ -9,20 +9,20 @@
       <Cargo :cargo="cargo" />
     </template>
     <div v-if="game.isCompleted">
-      <Button @click="handleToNextLevel">next</Button>
+      <span @click="handleToNextLevel">next</span>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import Map from "./Map.vue";
-import Player from "./Player.vue";
-import Cargo from "./Cargo.vue";
-import Target from "./Target.vue";
-import { useCargoStore } from "../../store/cargo";
-import { useTargetStore } from "../../store/target";
-import { useGameStore } from "../../store/game";
-import { gameData } from "../../game/gameData";
+import Map from "@/components/Games/Map.vue";
+import Player from "@/components/Games/Player.vue";
+import Cargo from "@/components/Games/Cargo.vue";
+import Target from "@/components/Games/Target.vue";
+import { useCargoStore } from "@/store/cargo";
+import { useTargetStore } from "@/store/target";
+import { useGameStore } from "@/store/game";
+import { gameData } from "@/game/gameData";
 
 defineOptions({
   name: "Game",

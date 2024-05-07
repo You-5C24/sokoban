@@ -1,7 +1,7 @@
 <template>
-  <Game />
+  <div>
+    <RouterView></RouterView>
+  </div>
 </template>
 
-<script setup lang="ts">
-import Game from "./components/Games/Game.vue";
-</script>
+<script setup lang="ts"></script>

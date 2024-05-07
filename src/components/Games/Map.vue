@@ -14,9 +14,9 @@
 </template>
 
 <script setup lang="ts">
-import Floor from "../../assets/floor.png";
-import Wall from "../../assets/wall.png";
-import { useMapStore, MapTile } from "../../store/map.ts";
+import Floor from "@/assets/floor.png";
+import Wall from "@/assets/wall.png";
+import { useMapStore, MapTile } from "@/store/map.ts";
 
 defineOptions({
   name: "Map",

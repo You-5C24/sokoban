@@ -14,6 +14,7 @@ import { MapTile } from "@/store/map";
 import Wall from "@/assets/wall.png";
 import Floor from "@/assets/floor.png";
 import { useMapEditStore } from "@/store/edit/mapEdit";
+import { useEditElementStore } from "../../store/edit/editElement";
 
 defineOptions({
   name: "MapBlock",
@@ -27,9 +28,10 @@ interface Props {
 const props = defineProps<Props>();
 
 const { map } = useMapEditStore();
+const { getCurrentSelectedEditElement } = useEditElementStore();
 
 function handleClick() {
-  map[props.y][props.x] = MapTile.WALL;
+  getCurrentSelectedEditElement().execute(props);
 }
 </script>
 
